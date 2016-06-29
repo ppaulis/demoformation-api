@@ -16,4 +16,5 @@ data/htpasswd/*
 data/cache/*
 !data/cache/.gitkeep
 .vagrant
+html
 build.local.properties
