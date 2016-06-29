@@ -17,6 +17,11 @@ class RestContext implements Context, SnippetAcceptingContext
     protected $queryString = [];
 
     /**
+     * @var \GuzzleHttp\Message\Request
+     */
+    protected $lastRequest;
+
+    /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
@@ -33,7 +38,7 @@ class RestContext implements Context, SnippetAcceptingContext
 
         $this->client = new \GuzzleHttp\Client(
             [
-                'base_uri' => 'http://localhost',
+                'base_url' => 'http://localhost',
                 'verify'   => false
             ]
         );
@@ -65,9 +70,9 @@ class RestContext implements Context, SnippetAcceptingContext
             $url,
             [
                 'headers'     => $headers,
-                'form_params' => $values,
+                //'form_params' => $values,
                 'verify'      => false,
-                'http_errors' => false,
+                'exceptions'  => false,
                 'query'       => $this->getQueryString()
             ]
         );
@@ -101,5 +106,19 @@ class RestContext implements Context, SnippetAcceptingContext
     public function getQueryString()
     {
         return $this->queryString;
+    }
+
+    /**
+     * Returns the response of the last request
+     *
+     * @return \GuzzleHttp\Message\Response
+     */
+    public function getLastResponse()
+    {
+        if (null === $this->lastResponse) {
+            throw new \LogicException('No request sent yet.');
+        }
+
+        return $this->lastResponse;
     }
 }
