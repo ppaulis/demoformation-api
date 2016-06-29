@@ -13,8 +13,12 @@ class ArticleManagerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-//        $mapperMock =  $this->getMock('Application\Model\Mapper\ArticleMapper');
-        $this->instance = new \stdClass();
+        $mapperMock = $this
+            ->getMockBuilder('Application\Model\Mapper\ArticleMapper')
+            ->disableOriginalConstructor()
+            ->setMethods(['find', 'save'])
+            ->getMock();
+        $this->instance = new ArticleManager($mapperMock);
     }
 
     public function tearDown()
@@ -22,8 +26,15 @@ class ArticleManagerTest extends \PHPUnit_Framework_TestCase
         $this->instance = null;
     }
 
-    public function testDummy()
+    public function testFetch()
     {
-        $this->assertTrue(true);
+        $id = 5;
+        $this->instance->getArticleMapper()
+            ->expects($this->once())
+            ->method('find')
+            ->with($id)
+            ->will($this->returnValue('result'));
+
+        $this->assertEquals('result', $this->instance->fetch($id));
     }
 }
