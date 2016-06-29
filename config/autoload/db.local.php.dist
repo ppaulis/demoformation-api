@@ -19,10 +19,10 @@ return array(
                     'adapter' => 'ZF\\MvcAuth\\Authentication\\OAuth2Adapter',
                     'storage' => array(
                         'adapter' => 'pdo',
-                        'dsn' => 'mysql:dbname=xxx;host=localhost',
+                        'dsn' => 'mysql:dbname=@db.dbname@;host=@db.host@',
                         'route' => '/oauth',
-                        'username' => 'xxx',
-                        'password' => 'xxx',
+                        'username' => '@db.username@',
+                        'password' => '@db.password@',
                     ),
                 ),
             ),
@@ -31,8 +31,8 @@ return array(
     'db' => array(
         'adapters' => array(
             'db_application' => array(
-                'username' => 'xxx',
-                'password' => 'xxx',
+                'username' => '@db.username@',
+                'password' => '@db.password@',
             ),
         ),
     ),

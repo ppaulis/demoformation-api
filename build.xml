@@ -1,0 +1,43 @@
+<project name="demoformation-api" default="help" basedir=".">
+
+    <if>
+        <available file="${project.basedir}/build.local.properties" />
+        <then>
+            <property file="${project.basedir}/build.local.properties" />
+        </then>
+    </if>
+    <property file="${project.basedir}/build.properties" />
+    
+    <target name="help" description="List available targets">
+        <exec executable="vendor/bin/phing"
+              passthru="true">
+            <arg value="-l"/>
+        </exec>
+    </target>
+
+    <!-- generate config -->
+    <target name="generate-config">
+
+        <copy todir="${project.basedir}/config"
+              overwrite="true">
+            <fileset dir="${project.basedir}/config">
+                <include name="**/*.local.php.dist" />
+            </fileset>
+            <mapper type="glob" from="*.local.php.dist" to="*.local.php" />
+            <filterchain>
+                <replacetokens>
+                    <token key="db.host" value="${db.host}" />
+                    <token key="db.port" value="${db.port}" />
+                    <token key="db.dbname" value="${db.dbname}" />
+                    <token key="db.username" value="${db.username}" />
+                    <token key="db.password" value="${db.password}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+    </target>
+
+    <target name="setup"
+            description="Setup external dependencies and migrate data"
+            depends="generate-config"/>
+</project>
