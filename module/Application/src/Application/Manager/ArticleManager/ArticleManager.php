@@ -16,9 +16,11 @@ class ArticleManager
     /**
      * @param ArticleMapper $articleMapper
      */
-    public function __construct(ArticleMapper $articleMapper)
+    public function __construct(ArticleMapper $articleMapper = null)
     {
-        $this->articleMapper = $articleMapper;
+        if ($articleMapper instanceof ArticleMapper) {
+            $this->articleMapper = $articleMapper;
+        }
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 namespace ApplicationTest\Manager\ArticleManager;
 
-use Application\Manager\ArticleManager\ArticleManager;
-use Application\Model\Mapper\ArticleMapper;
+use \Application\Manager\ArticleManager\ArticleManager;
+use Zend\Stdlib\Hydrator\ArraySerializable;
 
 class ArticleManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,8 @@ class ArticleManagerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->instance = new ArticleManager();
+        $mapperMock =  $this->getMock('Application\Model\Mapper\ArticleMapper');
+        $this->instance = new ArticleManager($mapperMock);
     }
 
     public function tearDown()
@@ -23,7 +24,7 @@ class ArticleManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSetArticleMapper()
     {
-        $mapper = new ArticleMapper();
+        $mapper = $this->getMock('Application\Model\Mapper\ArticleMapper');
 
         $this->assertSame($this->instance, $this->instance->setArticleMapper($mapper));
         $this->assertEquals($mapper, $this->instance->getArticleMapper());
