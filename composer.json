@@ -14,7 +14,9 @@
         "zendframework/zend-developer-tools": "~1.0.0",
         "zfcampus/zf-apigility-admin": "^1.2.1",
         "zfcampus/zf-deploy": "~1.0",
-        "phpunit/phpunit": "^4.6"
+        "phpunit/phpunit": "^4.6",
+        "behat/behat": "~3.0",
+        "guzzlehttp/guzzle": "~5.0"
     },
     "suggest": {
         "zfcampus/zf-apigility-doctrine": "zfcampus/zf-apigility-doctrine ~1.0 to create Doctrine-Connected REST services",
