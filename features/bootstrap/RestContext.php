@@ -61,7 +61,8 @@ class RestContext implements Context, SnippetAcceptingContext
 
         $headers =
             [
-                'Accept' => 'application/hal+json'
+                'Accept'     => 'application/hal+json',
+                'Connection' => 'Close'
             ];
         
         $method = strtolower($method);
@@ -73,7 +74,12 @@ class RestContext implements Context, SnippetAcceptingContext
                 //'form_params' => $values,
                 'verify'      => false,
                 'exceptions'  => false,
-                'query'       => $this->getQueryString()
+                'query'       => $this->getQueryString(),
+                'config' => [
+                    'curl' => [
+                        CURLOPT_FRESH_CONNECT => true
+                    ]
+                ]
             ]
         );
     }
