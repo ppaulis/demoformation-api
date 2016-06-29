@@ -61,7 +61,8 @@ class RestContext implements Context, SnippetAcceptingContext
 
         $headers =
             [
-                'Accept' => 'application/hal+json'
+                'Accept'     => 'application/hal+json',
+                'Connection' => 'Close'
             ];
         
         $method = strtolower($method);
