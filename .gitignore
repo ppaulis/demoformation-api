@@ -18,3 +18,4 @@ data/cache/*
 .vagrant
 html
 build.local.properties
+phinx.yml
