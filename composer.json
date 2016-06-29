@@ -13,7 +13,8 @@
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "~1.0.0",
         "zfcampus/zf-apigility-admin": "^1.2.1",
-        "zfcampus/zf-deploy": "~1.0"
+        "zfcampus/zf-deploy": "~1.0",
+        "phpunit/phpunit": "^4.6"
     },
     "suggest": {
         "zfcampus/zf-apigility-doctrine": "zfcampus/zf-apigility-doctrine ~1.0 to create Doctrine-Connected REST services",
