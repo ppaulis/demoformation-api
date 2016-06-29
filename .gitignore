@@ -16,3 +16,4 @@ data/htpasswd/*
 data/cache/*
 !data/cache/.gitkeep
 .vagrant
+html
