@@ -74,7 +74,12 @@ class RestContext implements Context, SnippetAcceptingContext
                 //'form_params' => $values,
                 'verify'      => false,
                 'exceptions'  => false,
-                'query'       => $this->getQueryString()
+                'query'       => $this->getQueryString(),
+                'config' => [
+                    'curl' => [
+                        CURLOPT_FRESH_CONNECT => true
+                    ]
+                ]
             ]
         );
     }
