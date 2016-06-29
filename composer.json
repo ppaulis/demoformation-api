@@ -13,11 +13,19 @@
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "~1.0.0",
         "zfcampus/zf-apigility-admin": "^1.2.1",
-        "zfcampus/zf-deploy": "~1.0"
+        "zfcampus/zf-deploy": "~1.0",
+        "phpunit/phpunit": "^4.6"
     },
     "suggest": {
         "zfcampus/zf-apigility-doctrine": "zfcampus/zf-apigility-doctrine ~1.0 to create Doctrine-Connected REST services",
         "zfcampus/zf-http-cache": "zfcampus/zf-http-cache ~1.0 to add HTTP caching to your API",
         "zfr/zfr-cors": "zfr/zfr-cors ~1.2 to add CORS support to your API"
+    },
+    "autoload": {
+        "psr-0": {
+            "Application\\": "module/Application/src",
+            "PsApiBase\\": "module/PsApiBase/src",
+            "Example\\": "module/Example/src"
+        }
     }
 }
