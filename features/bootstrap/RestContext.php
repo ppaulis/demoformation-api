@@ -36,12 +36,12 @@ class RestContext implements Context, SnippetAcceptingContext
 
         $this->zf2MvcApplication = \Zend\Mvc\Application::init(require __DIR__ . '/../../config/application.config.php');
 
-        $this->client = new \GuzzleHttp\Client(
+        /*$this->client = new \GuzzleHttp\Client(
             [
                 'base_url' => 'http://localhost',
                 'verify'   => false
             ]
-        );
+        );*/
     }
 
     /**
@@ -50,6 +50,13 @@ class RestContext implements Context, SnippetAcceptingContext
      */
     public function iSendRequest($method, $url, TableNode $table = null)
     {
+        $this->client = new \GuzzleHttp\Client(
+            [
+                'base_url' => 'http://localhost',
+                'verify'   => false
+            ]
+        );
+        
         $values = $table ? $table->getRowsHash() : [];
 
         $matches = [];
